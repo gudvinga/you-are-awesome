@@ -14,7 +14,7 @@ const createNotEnumerableProperty = (prop) => {
 
 const createProtoMagicObject = () => {
     let func = new Function();
-    func.__proto__ = func.prototype;
+    func.prototype = Function.prototype;
     return func;
 };
 
