@@ -23,14 +23,13 @@ const asyncIncrementor = () => {
     })
 };
 
-Map.prototype.value = 0;
-Map.prototype.next = function () {
-    this.value++;
-    return this;
-}
-
 const createIncrementer = () => {
-    return new Map();
+    function *iterator(n = 100) {
+        for(let i = 1; i < n; i++) {
+            yield i;
+        }
+    }
+    return iterator();
 };
 
 
