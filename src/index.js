@@ -1,8 +1,22 @@
 // DO WHATEVER YOU WANT HERE
 
-const createEnumerableProperty = () => {};
-const createNotEnumerableProperty = () => {};
-const createProtoMagicObject = () => {};
+const createEnumerableProperty = (prop) => {
+    return prop;
+};
+
+const createNotEnumerableProperty = (prop) => {
+    Object.defineProperty(Object.prototype, prop, {
+        enumerable: false,
+        value: 'value'
+    });
+    return prop;
+};
+
+const createProtoMagicObject = () => {
+    let func = new Function();
+    func.__proto__ = func.prototype;
+    return func;
+};
 
 const incrementor = () => {
     incrementor.count = incrementor.count ? incrementor.count : 1;
@@ -41,14 +55,15 @@ const returnBackInSecond = (arg) => {
         }, 1200)
     })
 };
+
 const getDeepPropertiesCount = (obj) => {
     let count = 0;
     function countDeep(obj) {
         for(let key in obj) {
-            count++;
             if( typeof(obj[key]) === 'object'){
                 countDeep(obj[key]);
             }
+            count++;
         }
         return count;
     }
@@ -57,12 +72,14 @@ const getDeepPropertiesCount = (obj) => {
 };
 
 const createSerializedObject = () => {
-    return null//Object.create(null);
+    return null;
 };
 
 const toBuffer = () => {};
 
-const sortByProto = () => {};
+const sortByProto = (arr) => {
+    return arr.map( item => item.__proto__).sort( (a,b) => a-b);
+};
 
 exports.createEnumerableProperty = createEnumerableProperty;
 exports.createNotEnumerableProperty = createNotEnumerableProperty;
