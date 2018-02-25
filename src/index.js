@@ -13,10 +13,15 @@ const incrementor = () => {
     counter.valueOf = function() {
         return incrementor.count++;
     }
-
     return counter;
 };
-const asyncIncrementor = () => {};
+const asyncIncrementor = () => {
+    asyncIncrementor.count = asyncIncrementor.count ? asyncIncrementor.count : 0;
+    return new Promise( (resolve, regect) => {
+        asyncIncrementor.count++;
+        return resolve(asyncIncrementor.count);
+    })
+};
 const createIncrementer = () => {};
 
 // return same argument not earlier than in one second, and not later, than in two
