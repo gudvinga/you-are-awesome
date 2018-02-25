@@ -22,10 +22,26 @@ const asyncIncrementor = () => {
         return resolve(asyncIncrementor.count);
     })
 };
-const createIncrementer = () => {};
+
+Map.prototype.value = 0;
+Map.prototype.next = function () {
+    this.value++;
+    return this;
+}
+
+const createIncrementer = () => {
+    return new Map();
+};
+
 
 // return same argument not earlier than in one second, and not later, than in two
-const returnBackInSecond = () => {};
+const returnBackInSecond = (arg) => {
+    return new Promise( (resolve, regect) => {
+        setTimeout(function() {
+            return resolve(arg);
+        }, 1200)
+    })
+};
 const getDeepPropertiesCount = () => {};
 const createSerializedObject = () => {};
 const toBuffer = () => {};
